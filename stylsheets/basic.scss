@@ -1,0 +1,29 @@
+html {height: 100%; width: 100%;}
+body {width: 70%; height: 100%; padding: 0px; margin: 0px; border: 20px;
+        font-family: cursive, fantasy, monospace; background: #EE7942;
+        font-size: 16px; line-height: 15px; margin-left: 15%;}
+        
+img  {border: none;}
+table, tr, td {border-collapse: collapse; vertical-align: top; font-size: 18px; line-height: 25px;}
+a {color: #8D0D19;}
+
+#header {height: 200px; margin: 0px; margin-top: 0px; padding: 0px; text-align: center; background: #1A446C; color: #D4E6FE;}
+#header h1 {padding: 20px; margin: 0px;}
+#main {margin: 0px; padding: 0px; height: auto; width: 100%; background: #EEE4B9; }
+#structure {height: 100%; width: 100%;}
+#footer {height: 2em; margin: 0px; padding: 1em; text-align: center;
+            background: #1A446C; color: #D4E6F4;}
+            
+            
+/*navigation*/
+#navigation {width: 200px; padding: 1em 2em; color: #D4E6F4; background: #35dd22; font-size: 16px;}
+#navigation a {text-decoration: none; }
+ul.subjects {padding-left: 0; list-style: outside;}
+ul.pages {padding-left: 2em; list-style: square;}
+.selected {font-weight: bold;}
+
+/*page conten*/
+
+#page {padding-left: 2em; vertical-align: top;}
+#page h2 {margin-top: 1em;}
+#page h3 {color: #8D0D19;}
