@@ -1,1 +1,4 @@
 some tables have to add in futuer...
+create user and grant previlages
+cueern username for data base - user
+pass word - pass 
