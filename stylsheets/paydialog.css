@@ -1,0 +1,30 @@
+.dialog{
+  border:5px solid #666;
+  padding:10px;
+  background:#CFCFA6;
+  display:none;
+  border-radius:10px;
+  margin: 0 auto;
+  text-align: center;
+}
+.dialog label{
+  display:inline-block;
+  color:#000000;
+}
+input[type=text]{
+  border:1px solid #333;
+  display:inline-block;
+  margin:5px;
+}
+
+#plid{
+  margin-left: 10%;
+  width: 25%;
+  text-align: left;
+}
+
+#cpid{
+  margin-left: 10%;
+  font-size: 30px;
+  text-align: left;
+}

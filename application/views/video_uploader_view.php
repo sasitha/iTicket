@@ -1,6 +1,11 @@
 
 
 <?php $this->load->view('header'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('stylsheets/juidate.css'); ?>"></link>
+<script type="text/javascript" src="<?php echo base_url('jscr/jquery_min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('jscr/jui.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('jscr/video_uploader.js'); ?>"></script>
+
 <td id= "navigation">
     <ul class= "subjects">
         
@@ -26,7 +31,7 @@
     
     <p>
         <label for= 'showing_date'>Showing date</label>
-        <input type= 'text' name= 'showing_date' id= 'showing_date' />
+        <input id="showdate" type= 'text' name= 'showing_date' id= 'showing_date' />
         <?php echo $this->calendar->generate(); ?>
     </p>
     <?php
