@@ -6,7 +6,7 @@ var boxv = box_value;
 var all_payment = new Array();
 $(document).ready(function() {
 	$("#gr").selectable();
-	$('#date').datepicker({minDate:'1',maxDate:'+6m'});//adding date picker
+	$('#date').datepicker({dateFormat:'dd:mm:yy',minDate:'1',maxDate:'+6m'});//adding date picker
 	$(".n_book").click(function() {
 		var two = $(this).attr('id');
 		//alert(two);
