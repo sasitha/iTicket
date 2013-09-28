@@ -37,16 +37,13 @@
 			$bal_t = 2;
 			$box_t = 3;
 		?>
-
 		<!-- passing to script -->
-		<script type="text/javascript">var odc_value =<?php echo $odc_v; ?>
-	;
-	var bal_value = 
-<?php echo $bal_v; ?>
-	;
-	var box_value = 
-<?php echo $box_v; ?>
-	;
+	<script type="text/javascript">
+	var odc_value =<?php echo $odc_v; ?>;
+	var bal_value = <?php echo $bal_v; ?>;
+	var box_value = <?php echo $box_v; ?>;
+	var fromc = "<?php echo site_url('sitemap_c/check_hall') ;?>";
+	//var url_to = ;
 	function count(e_id) {
 
 		//$('#ammount').html('Your total is Rs '+totala+'.00');
@@ -68,7 +65,7 @@
 			<!--spaces-->
 			<div class="dati"> Date <input id="date" type="text" size = "8" />  </div>
 			<div id="time" class="dati">  Time 
-			<select name="dropdown">
+			<select id ="stime" name="dropdown">
 			<?php
 			foreach ($showtims as $r) {
 				echo "<option value=$r->id>$r->time</option>";
@@ -77,7 +74,7 @@
 			</select>
 			</div>
 			<br><br><br><br><br><br><br><br>
-			<button class = "chkbtn">Check</button>
+			<button id="cbk" class = "chkbtn">Check</button>
 			</div>
 
 		<!--hall plan -->
@@ -87,6 +84,8 @@
 			<!--adding seats-->
 			<br><br><br><br><br><br>
 		<?php
+			$rr = 'r';
+			$cc = 'c';
 			if (($odc_v != 0) and sizeof($locat) > 0) {
 				foreach ($locat as $r) {
 					if ($r -> s_id == $odc_t) {
@@ -96,7 +95,7 @@
 							echo "<br><br>";
 						}
 						$get_row = explode("r", $split_row_col[0]);
-						echo "<div id=\"$odc_t.r.$row_number.c.$split_row_col[1]\" onClick=\"count(this.id)\" class = \"n_book\"><br><br><br><br>O</div>";
+						echo "<div id=\"$odc_t$rr$row_number$cc$split_row_col[1]\" onClick=\"count(this.id)\" value=\"C\" class = \"n_book\"><br><br><br><br>O</div>";
 						echo " ";
 					}
 				}
@@ -113,7 +112,7 @@
 							echo "<br><br>";
 						}
 						$get_row = explode("r", $split_row_col[0]);
-						echo "<div id=\"$bal_t.r.$row_number.c.$split_row_col[1]\" onClick=\"count(this.id)\" class = \"n_book\"><br><br><br><br>B</div>";
+						echo "<div id=\"$bal_t$rr$row_number$cc$split_row_col[1]\" onClick=\"count(this.id)\" class = \"n_book\"><br><br><br><br>B</div>";
 						echo " ";
 					}
 				}
@@ -129,7 +128,7 @@
 							echo "<br><br>";
 						}
 						$get_row = explode("r", $split_row_col[0]);
-						echo "<div id=\"$box_t.r.$row_number.c.$split_row_col[1]\" onClick=\"count(this.id)\" class = \"n_book\"><br><br><br><br>X</div>";
+						echo "<div id=\"$box_t$rr$row_number$cc$split_row_col[1]\" onClick=\"count(this.id)\" class = \"n_book\"><br><br><br><br>X</div>";
 						echo " ";
 					}
 				}
@@ -181,13 +180,13 @@
 			<!--payments-->
 			<div id ="ammount" class="amm"> </div>
 			<br>
-			<button class = "py" id="pay" onclick="set_data()"> Pay </button>
+			<button class = "py" id="pay"> Pay </button>
 			<br><br>
 			</div>
 			<!--payment form-->
 			
 			<div class=dialog id=myform >
-    <form>
+  		<form>
       <label id="plid"> Enter N.I.C </label>
       <input type="text" id="name" id="plid"></input>
       <br>
@@ -202,7 +201,7 @@
       <div align="center">
         <button class="py" id="btnOK"> Ok</button>
       </div>
-    </form>
+ 		</form>
   </div>
 		
 
