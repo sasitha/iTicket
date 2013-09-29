@@ -57,7 +57,21 @@
 				}
 				return $data;
 			}
-		}   		  		
+		}
 		
-    }
+		public function get_book_seats($film_hall_id,$date,$time){
+			$que = "SELECT s_id,location
+    				FROM location
+    				WHERE l_id in
+    				(SELECT lo_id from ticket
+    				WHERE fil_id = ? AND
+    				s_date = ? AND
+    				show_time_id = ?)";
+			$qu = $this->db->query($que,array($film_hall_id,mysql_real_escape_string($date),mysql_real_escape_string($time)));
+			if($qu->num_rows()>0){
+				$add = $qu->result_array();	
+				return $add;			
+			}  
+		} 		  				
+}
 ?>

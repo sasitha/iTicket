@@ -3,15 +3,23 @@ var ctrl_press = false;
 var odcv = odc_value;
 var balv = bal_value;
 var boxv = box_value;
+var post_c_url = fromc;
+
 var all_payment = new Array();
+var id_maker = new Array();
 $(document).ready(function() {
 	$("#gr").selectable();
-	$('#date').datepicker({dateFormat:'dd:mm:yy',minDate:'1',maxDate:'+6m'});//adding date picker
+	$('#date').datepicker({dateFormat:'yy-mm-dd',minDate:'1',maxDate:'+6m'});//adding date picker
 	$(".n_book").click(function() {
 		var two = $(this).attr('id');
-		//alert(two);
-		if (two != undefined) {
+		var cls = $(this).attr('class');
+		if (two != undefined && cls == "n_book ui-selectee ui-selected") {
 			coun(two);
+		}
+		else if($(this).attr("class") == 'book_b ui-selectee ui-selected'){
+			set_data();
+			//counter();
+			alert("Sorry this was already booked");
 		}
 	});
 	$('#ammount').html('Your total is <br> Rs ' + totala + '.00');
@@ -54,11 +62,6 @@ $(window).keyup(function(evt) {
 	}
 });
 
-function reply_click() {
-	alert("Sorry This was Already booked ");
-}
-
-
 function counter() {
 	totala = 0;
 	for (var i = 0; i < all_payment.length; i++) {
@@ -86,7 +89,6 @@ function amIclicked(e, element) {
 
 function clear_click(event, element) {
 	if (amIclicked(event, element)) {
-		//alert('ground');
 		totala = 0;
 		$('#ammount').html('Your total is <br> Rs ' + totala + '.00');
 	}
@@ -96,8 +98,8 @@ function set_data(){
 	if(all_payment.length!=0){
 		//alert(all_payment);
 		all_payment =[];
-	}
-	
+		counter();
+	}	
 }
 
 $(function() {
@@ -113,7 +115,58 @@ $(function() {
     });
     $("#btnOK").click(function() {
        // $("#myform").hide(400);
+       
        $.unblockUI();
+       alert(String(all_payment));
     });
 });
 
+$(function() {
+	$("#cbk").click(function(){
+		if($("#date").val()== ""){
+    		alert("Date is not define");
+    	}else{
+    		if(id_maker.length != 0){
+    			change_book_seats(id_maker,'n_book');
+    			//alert("kk");
+    			id_maker = [];
+    		}
+    		//alert($('#stime').val());
+    		 var chk_data={
+    		 	select_date: $('#date').val(),
+    		 	select_time: $('#stime').val()
+    		 };
+    		 //var urlk = url_to;
+    		 //alert(urlk);
+			$.ajax({
+				url: post_c_url,
+				type: 'POST',
+				data:chk_data,
+				success:function(msg){
+					//alert(msg);
+					book_seats(msg);
+				}
+			});
+    	}	
+	});
+});
+
+function book_seats(msg){
+	var ch_ids = msg.split("Xx");
+	//var id_maker = new Array();
+	for(var i =0 ; i <ch_ids.length; i+=2){
+		id_maker.push((ch_ids[i]+ch_ids[i+1]));
+	}
+	change_book_seats(id_maker,'book_b');
+};
+
+function change_book_seats(id_array,type){
+	//alert($('#1r1c11').attr('id'));
+	//$('#1r1c11').html('P');
+	for(var j =0; j< id_array.length;j++){
+		//alert(id_array[j]);
+		var s1 ='#';
+		var s2 = s1+id_array[j];
+		$(s2).attr('class',type);
+	}	
+}
