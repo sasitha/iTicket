@@ -1,11 +1,13 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+//
     //phpinfo();
    /**
     * 
     */
    class sitemap_c extends CI_Controller {
    
-   public $film_hall_id = 1;    
+   private $film_hall_id = 1; 
+   private $film_id = 1;   
        function index(){
        	$this->load->model("ticket_m");
 		$seats['prices'] = $this->ticket_m->get_prices(1);//accea to hall id 1
@@ -16,7 +18,7 @@
 		//$this->load->view("dbhelper",$seats);
        }
 	   
-	   function check_hall(){
+	    function check_hall(){
 	   	
 	   		$f_h_i = $this->film_hall_id;
 	   		$date = $this->input->post("select_date");
@@ -38,12 +40,34 @@
 			}else{
 				echo "no data";
 			}
-			//echo ($rr);
-			//}
-			//echo $date.$time.$value.$f_h_i;
-			//echo $date;
-	   		//return $value;
 	   }
+		
+		function book_ticket(){
+			$f_h_i = $this->film_hall_id;
+			$flm_id =$this->film_id;
+			$b_date = $this->Escape($this->input->post("b_date"));
+			$b_time = $this->Escape($this->input->post("b_time"));
+			$b_seats_arr = $this->input->post("b_s_arr");
+			$cl_mail = $this->Escape($this->input->post("cl_m"));
+			$cl_nic = $this->Escape($this->input->post("cl_nic"));
+			$cl_news = $this->input->post("cl_nl");
+			$price = $this->Escape($this->input->post("cl_price"));
+			$sep = '<br>';
+			//load model
+			$this->load->model("ticket_m");
+			if($cl_news == 'true'){
+				$this->ticket_m->add_to_mail_list($cl_mail);
+			}
+			$this->ticket_m->add_seat($cl_mail,$cl_nic,$f_h_i,$flm_id,$b_date,$b_time,$b_seats_arr,$price);
+			//echo "$b_date.$sep.$b_time$sep$b_seats_arr$sep$cl_mail$sep$cl_nic$sep$cl_news";
+			//$this->load->model("ticket_m");
+			
+		}
+		
+		private function Escape($input){
+			return mysql_real_escape_string($input);
+		}
+	   
    }
    
 ?>

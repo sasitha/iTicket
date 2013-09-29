@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2013 at 07:42 PM
+-- Generation Time: Sep 29, 2013 at 07:25 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -33,7 +33,15 @@ CREATE TABLE IF NOT EXISTS `client` (
   `n_ic` varchar(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `client`
+--
+
+INSERT INTO `client` (`c_id`, `n_ic`, `email`) VALUES
+(1, '880854v', 'jaye1944@gmail.com'),
+(2, '887523', 'wmcj76@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -194,9 +202,18 @@ INSERT INTO `managers` (`m_id`, `f_name`, `l_name`, `email`, `nic`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `newsletter` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `newsletter`
+--
+
+INSERT INTO `newsletter` (`id`, `email`) VALUES
+(1, 'wmcj76@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -288,21 +305,45 @@ INSERT INTO `show_times` (`id`, `time`, `f_h_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `test`
+--
+
+CREATE TABLE IF NOT EXISTS `test` (
+  `data` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ticket`
 --
 
 CREATE TABLE IF NOT EXISTS `ticket` (
-  `t_id` int(20) NOT NULL,
+  `t_id` int(20) NOT NULL AUTO_INCREMENT,
   `cl_id` int(10) NOT NULL,
   `lo_id` int(6) NOT NULL,
   `fil_id` int(10) NOT NULL,
   `s_date` date NOT NULL,
-  `show_time` time NOT NULL,
+  `show_time_id` int(5) NOT NULL,
   PRIMARY KEY (`t_id`),
   KEY `cl_id` (`cl_id`,`lo_id`),
   KEY `fil_id` (`fil_id`),
-  KEY `lo_id` (`lo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `lo_id` (`lo_id`),
+  KEY `show_time_id` (`show_time_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`t_id`, `cl_id`, `lo_id`, `fil_id`, `s_date`, `show_time_id`) VALUES
+(1, 1, 1, 1, '2013-10-01', 1),
+(2, 1, 2, 1, '2013-10-01', 1),
+(3, 1, 3, 1, '2013-10-01', 1),
+(4, 2, 1, 1, '2013-10-01', 2),
+(5, 2, 2, 1, '2013-10-01', 2),
+(6, 2, 3, 1, '2013-10-01', 2),
+(7, 2, 4, 1, '2013-10-01', 2);
 
 --
 -- Constraints for dumped tables
@@ -353,7 +394,8 @@ ALTER TABLE `show_times`
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`cl_id`) REFERENCES `client` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ticket_ibfk_3` FOREIGN KEY (`lo_id`) REFERENCES `location` (`l_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `ticket_ibfk_4` FOREIGN KEY (`fil_id`) REFERENCES `films` (`film_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `ticket_ibfk_4` FOREIGN KEY (`fil_id`) REFERENCES `films` (`film_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `ticket_ibfk_5` FOREIGN KEY (`show_time_id`) REFERENCES `show_times` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

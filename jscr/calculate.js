@@ -4,6 +4,7 @@ var odcv = odc_value;
 var balv = bal_value;
 var boxv = box_value;
 var post_c_url = fromc;
+var post_c_book = bookc;
 
 var all_payment = new Array();
 var id_maker = new Array();
@@ -113,11 +114,30 @@ $(function() {
     	$.blockUI({ message: $('#myform') });
        }
     });
-    $("#btnOK").click(function() {
-       // $("#myform").hide(400);
-       
+    $("#btnOK").click(function() {      
        $.unblockUI();
-       alert(String(all_payment));
+       //check thigs have to implement
+       ///
+       // ajax
+       var book_data = {
+       		b_date : $('#date').val(),
+       		b_time : $('#stime').val(),
+       		cl_m : $('#email').val(),
+       		cl_nic : $('#name').val(),
+       		cl_nl : $('#cheknl').is(':checked'),
+       		b_s_arr : all_payment.join("#"),
+       		cl_price: $('#ammount').val()
+       };
+       $.ajax({
+       		url: post_c_book,
+       		type: 'POST',
+       		data: book_data,
+       		success:function(msg){
+					alert(msg);
+					//book_seats(msg);
+			}
+       });
+       //alert(book_data.toSource());
     });
 });
 
@@ -161,8 +181,6 @@ function book_seats(msg){
 };
 
 function change_book_seats(id_array,type){
-	//alert($('#1r1c11').attr('id'));
-	//$('#1r1c11').html('P');
 	for(var j =0; j< id_array.length;j++){
 		//alert(id_array[j]);
 		var s1 ='#';
