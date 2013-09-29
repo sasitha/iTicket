@@ -53,18 +53,10 @@ class home_controller extends CI_Controller {
     public function home() {
         //loading model
         $this->load->model('films_model');
-        $film_names['names'] = $this->films_model->display_thumbs();
+        $film_names['films_data'] = $this->films_model->get_film_data();
 
         //loading view
         $this->load->view('home_view', $film_names);
-
-
-        if ($this->input->post('submit')) {
-            $name = $this->input->post('submit');
-            echo $name;
-            $link = '/home_controller/video_player/' . $name;
-            redirect(base_url($link));
-        }
     }
 
 }

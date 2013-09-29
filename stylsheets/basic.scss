@@ -27,3 +27,20 @@ ul.pages {padding-left: 2em; list-style: square;}
 #page {padding-left: 2em; vertical-align: top;}
 #page h2 {margin-top: 1em;}
 #page h3 {color: #8D0D19;}
+
+
+
+/*home gallery*/
+#gallery{
+    font-family: monospace; border: 1px solid; margin: 10px auto; width: auto;
+    padding: 3px;
+}
+#gallery:after{
+    content: '.'; visibility: visible; display: block; clear: both; height: 0; font-size: 0;
+}
+.thumbs {
+    float: left; padding: 10px; margin: 10px auto; background-color: #ddd;
+}
+.thumbs:hover{
+    outline: 1px solid;
+}
