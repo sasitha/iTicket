@@ -59,6 +59,17 @@ class home_controller extends CI_Controller {
         $this->load->view('home_view', $film_names);
     }
 
+    public function qr_display() {
+        //loading model
+        $this->load->model('qr_model');
+
+        //calling to the controller function 
+        $qr_data['data'] = $this->qr_model->qr_display();
+
+        //loading view
+        $this->load->view('qr_view', $qr_data);
+    }
+
 }
 
 ?>
