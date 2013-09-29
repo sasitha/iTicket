@@ -32,10 +32,10 @@
     <p>
         <label for= 'showing_date'>Showing date</label>
         <input id="showdate" type= 'text' name= 'showing_date' id= 'showing_date' />
-        <?php echo $this->calendar->generate(); ?>
     </p>
     <?php
-        echo form_upload('userfile');
+        echo form_upload('video');
+        echo form_upload('image');
         echo form_submit('upload', 'Upload');
         echo form_close();
     ?>
