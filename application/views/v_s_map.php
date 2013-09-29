@@ -43,6 +43,8 @@
 	var bal_value = <?php echo $bal_v; ?>;
 	var box_value = <?php echo $box_v; ?>;
 	var fromc = "<?php echo site_url('sitemap_c/check_hall') ;?>";
+	var bookc = "<?php echo site_url('sitemap_c/book_ticket') ;?>";
+
 	//var url_to = ;
 	function count(e_id) {
 
@@ -186,7 +188,7 @@
 			<!--payment form-->
 			
 			<div class=dialog id=myform >
-  		<form>
+  		<!--<form>-->
       <label id="plid"> Enter N.I.C </label>
       <input type="text" id="name" id="plid"></input>
       <br>
@@ -197,11 +199,11 @@
       <br>
       <label> Payment daitails will send to your email</label>
       <br>
-      <input type="checkbox" name="nwsletter" value="yn">Send monthly news letter to me</input><br><br>
+      <input type="checkbox" id="cheknl" name="nwsletter">Send monthly news letter to me</input><br><br>
       <div align="center">
         <button class="py" id="btnOK"> Ok</button>
       </div>
- 		</form>
+ 		<!--</form>-->
   </div>
 		
 
