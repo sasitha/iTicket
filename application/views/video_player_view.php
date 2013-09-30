@@ -26,6 +26,9 @@
                 <embed src="<?php echo $video_link ?>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344">  
                 </embed>  
             </object> 	
+    
+     <br>
+    <button type="button" class ="button">Reserve a Ticket</button>
   
 </td>
 
