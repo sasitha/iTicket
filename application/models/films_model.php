@@ -80,11 +80,11 @@ class films_model extends CI_Model {
     }
 
     //play a video 
-    public function play_video($film_name) {
+    public function play_video($film_id) {
 
         $this->db->select('trailer_link');
         $this->db->from('films');
-        $this->db->where('film_name', $film_name);
+        $this->db->where('film_id', $film_id);
 
         $result = $this->db->get();
 
@@ -98,7 +98,7 @@ class films_model extends CI_Model {
 
     //display the thumbnail of all the  videos 
     public function get_film_data() {
-        $this->db->select('film_name , thumb_link');
+        $this->db->select('film_id, film_name , thumb_link');
         $this->db->from('films');
 
         $restult = $this->db->get();
