@@ -41,10 +41,10 @@ class home_controller extends CI_Controller {
         return;
     }
 
-    public function video_player($film_name) {
+    public function video_player($film_id) {
         //loading model
         $this->load->model('films_model');
-        $trailer_link['link'] = $this->films_model->play_video($film_name);
+        $trailer_link['link'] = $this->films_model->play_video($film_id);
 
         //loading view
         $this->load->view('video_player_view', $trailer_link);
