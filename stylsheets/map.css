@@ -2,11 +2,11 @@
 	text-align:center;
 	font-family:verdana;
 	padding:20px;
-	border-radius:10px;
+	/*border-radius:10px;*/
 	border:10px solid #EE872A;
 	background-color: #D1FFD1;
 	line-height: 15%;
-	width: 74%;
+	width: 72.6%;
 	float:left;
 	vertical-align:middle;
 }
@@ -14,11 +14,11 @@
 .dt {
 	font-family:verdana;
 	padding:10px;
-	border-radius:15px;
+	/*border-radius:15px;*/
 	border:15px solid #C0AFAF;
 	background-color: #E0D7D7;
 	line-height: 50%;
-	width: 75%;
+	width: 73.7%;
 	float:left;
 	vertical-align:middle;
 }
@@ -54,11 +54,11 @@ float:left;
 	text-align:center;
 	font-family:"Arial Black";
 	background-color: #B2B2B2;
-	border-radius:10px;
+	/*border-radius:10px;*/
 	border:10px solid #4C4C4C;
 	width: 19%;
 	height:auto;
-	margin-left: 80%;
+	margin-left: 79%;
 }
 
 .reference {
