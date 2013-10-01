@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<!--<head>-->
 		<title></title>
+		<br><br>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('stylsheets/book.css'); ?>"></link>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('stylsheets/notbook.css'); ?>"></link>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('stylsheets/map.css'); ?>"></link>
@@ -52,7 +53,7 @@
 	}
 		</script>
 		<script type="text/javascript" src="<?php echo base_url('jscr/calculate.js'); ?>"></script>
-	</head>
+	<!--</head>-->
 	<!--<body>-->
 		<!--information -->
 		<?php echo "<div id=\"datetime\" class = \"dt\">";

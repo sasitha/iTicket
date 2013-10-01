@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2013 at 07:25 PM
+-- Generation Time: Oct 01, 2013 at 09:47 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `n_ic` varchar(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `client`
@@ -41,7 +41,12 @@ CREATE TABLE IF NOT EXISTS `client` (
 
 INSERT INTO `client` (`c_id`, `n_ic`, `email`) VALUES
 (1, '880854v', 'jaye1944@gmail.com'),
-(2, '887523', 'wmcj76@gmail.com');
+(2, '234758bb', 'ja44@gmail.com'),
+(3, '88956', 'jaye1944@gmail.com'),
+(4, '880854', 'ja@com'),
+(5, 'jaye1944@gm', '888'),
+(6, '888', 'eeweewe'),
+(7, '3456', 'adsr');
 
 -- --------------------------------------------------------
 
@@ -103,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `films` (
   `description` varchar(300) NOT NULL,
   `trailer_link` varchar(200) NOT NULL,
   `showing_date` date NOT NULL,
+  `thumb_link` varchar(200) NOT NULL,
   PRIMARY KEY (`film_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -110,8 +116,8 @@ CREATE TABLE IF NOT EXISTS `films` (
 -- Dumping data for table `films`
 --
 
-INSERT INTO `films` (`film_id`, `film_name`, `description`, `trailer_link`, `showing_date`) VALUES
-(1, 'Skay fall', 'Nice film', 'Www.youtube.com/skyfall', '2013-09-03');
+INSERT INTO `films` (`film_id`, `film_name`, `description`, `trailer_link`, `showing_date`, `thumb_link`) VALUES
+(1, 'Skay fall', 'Nice film', 'Www.youtube.com/skyfall', '2013-09-03', '');
 
 -- --------------------------------------------------------
 
@@ -213,6 +219,8 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
 --
 
 INSERT INTO `newsletter` (`id`, `email`) VALUES
+(3, 'amal@ghl.com'),
+(2, 'ja44@gmail.com'),
 (1, 'wmcj76@gmail.com');
 
 -- --------------------------------------------------------
@@ -312,6 +320,13 @@ CREATE TABLE IF NOT EXISTS `test` (
   `data` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`data`) VALUES
+('128');
+
 -- --------------------------------------------------------
 
 --
@@ -330,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   KEY `fil_id` (`fil_id`),
   KEY `lo_id` (`lo_id`),
   KEY `show_time_id` (`show_time_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `ticket`
@@ -340,10 +355,40 @@ INSERT INTO `ticket` (`t_id`, `cl_id`, `lo_id`, `fil_id`, `s_date`, `show_time_i
 (1, 1, 1, 1, '2013-10-01', 1),
 (2, 1, 2, 1, '2013-10-01', 1),
 (3, 1, 3, 1, '2013-10-01', 1),
-(4, 2, 1, 1, '2013-10-01', 2),
-(5, 2, 2, 1, '2013-10-01', 2),
-(6, 2, 3, 1, '2013-10-01', 2),
-(7, 2, 4, 1, '2013-10-01', 2);
+(4, 1, 4, 1, '2013-10-01', 1),
+(5, 2, 36, 1, '2013-10-01', 1),
+(6, 2, 17, 1, '2013-10-01', 1),
+(7, 3, 7, 1, '2013-10-03', 1),
+(8, 4, 19, 1, '2013-10-15', 1),
+(9, 5, 28, 1, '2013-10-20', 1),
+(10, 6, 7, 1, '2013-10-04', 1),
+(11, 6, 17, 1, '2013-10-04', 1),
+(12, 6, 18, 1, '2013-10-04', 1),
+(13, 7, 28, 1, '2013-10-04', 1),
+(14, 7, 35, 1, '2013-10-04', 1),
+(15, 7, 34, 1, '2013-10-04', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ticket_data`
+--
+
+CREATE TABLE IF NOT EXISTS `ticket_data` (
+  `client_id` int(5) DEFAULT NULL,
+  `key_val` varchar(129) NOT NULL,
+  KEY `client_id` (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ticket_data`
+--
+
+INSERT INTO `ticket_data` (`client_id`, `key_val`) VALUES
+(4, 'CORbH+5qSTgTZByV8U49EgHZ7Cad8vwU/Fk0uDmkhXeK/AaliO1rfO2G/2F2KbtTWGyIFAM8VZPbw9PEbB5BBQ=='),
+(5, 'k37eWlz2EEckpOg3ZwLOCZvCADIbz1XzHumRKr6ppT4+rrIogbQQW99SB4+fwAbesAqPA0lFvHksIFBBYSComlk8VQXN/xmONWyhtyMo0+8Zs3z1CqYJZ+3d+pjo8NJy'),
+(6, 'm9Za6sl1Pfmv4r3lRBbDCoZEDl1K2POgShG3Mh4GzPfzQq3wcVNjlcFKo8RKutcArdDVPd/SGirqPOkdicz+G25I2qlHOZowbtPb5PGsDIW48t1CxP7WTlrKR4Ww2B6+'),
+(7, 'wfoZ0RLOgfTcLkW0FhdObby5XhOkgsdriK7P0QBX6CpaA6+HWngvzFT3Qkp+68NUUff2YWEOVwrTI9fZrMaywEznQtnj39U9keUeu/pzLILcm51nLoqCURkOeqzaozPH');
 
 --
 -- Constraints for dumped tables
@@ -392,10 +437,10 @@ ALTER TABLE `show_times`
 -- Constraints for table `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`cl_id`) REFERENCES `client` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ticket_ibfk_3` FOREIGN KEY (`lo_id`) REFERENCES `location` (`l_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `ticket_ibfk_4` FOREIGN KEY (`fil_id`) REFERENCES `films` (`film_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `ticket_ibfk_5` FOREIGN KEY (`show_time_id`) REFERENCES `show_times` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ticket_ibfk_5` FOREIGN KEY (`show_time_id`) REFERENCES `show_times` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ticket_ibfk_6` FOREIGN KEY (`cl_id`) REFERENCES `client` (`c_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -69,7 +69,9 @@
 			if($this->ticket_m->check_availability($f_h_i,$b_time,$b_date,$b_seats_arr)){
 				echo "please ckeck availabitily before book seat";
 			}else{
-				$this->load->view("qr_view");
+				$this->load->model('qr_model');
+				$qr_data['data'] = $this->qr_model->create_qr_data($cl_mail,$cl_nic,$b_seats_arr);
+				echo $qr_data['data'];
 				$this->ticket_m->add_seat($cl_mail,$cl_nic,$f_h_i,$flm_id,$b_date,$b_time,$b_seats_arr,$price);
 			}
 			//echo "$b_date.$sep.$b_time$sep$b_seats_arr$sep$cl_mail$sep$cl_nic$sep$cl_news";
