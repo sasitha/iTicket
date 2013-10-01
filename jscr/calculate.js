@@ -14,7 +14,7 @@ $(document).ready(function() {
 	$(".n_book").click(function() {
 		var two = $(this).attr('id');
 		var cls = $(this).attr('class');
-		if (two != undefined && cls == "n_book ui-selectee ui-selected") {
+		if (two != undefined && $(this).attr("class") != 'book_b ui-selectee ui-selected') {
 			coun(two);
 		}
 		else if($(this).attr("class") == 'book_b ui-selectee ui-selected'){
@@ -119,15 +119,19 @@ $(function() {
        //check thigs have to implement
        ///
        // ajax
+       var e_mail = $('#email').val();
+       var nic = $('#name').val();
+       //vaildate_mail(e_mail);
        var book_data = {
        		b_date : $('#date').val(),
        		b_time : $('#stime').val(),
-       		cl_m : $('#email').val(),
-       		cl_nic : $('#name').val(),
+       		cl_m : e_mail,
+       		cl_nic : nic,
        		cl_nl : $('#cheknl').is(':checked'),
        		b_s_arr : all_payment.join("#"),
        		cl_price: $('#ammount').val()
        };
+       if(vaildate_mail(e_mail) && vaildate_nic(nic)){
        $.ajax({
        		url: post_c_book,
        		type: 'POST',
@@ -137,6 +141,7 @@ $(function() {
 					//book_seats(msg);
 			}
        });
+       }
        //alert(book_data.toSource());
     });
 });
@@ -172,7 +177,7 @@ $(function() {
 });
 
 function book_seats(msg){
-	var ch_ids = msg.split("Xx");
+	var ch_ids = msg.split("#");
 	//var id_maker = new Array();
 	for(var i =0 ; i <ch_ids.length; i+=2){
 		id_maker.push((ch_ids[i]+ch_ids[i+1]));
@@ -187,4 +192,25 @@ function change_book_seats(id_array,type){
 		var s2 = s1+id_array[j];
 		$(s2).attr('class',type);
 	}	
+}
+//customervalidation from client side
+function vaildate_mail(mail_address){
+var atpos=mail_address.indexOf("@");
+var dotpos=mail_address.lastIndexOf(".");
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=mail_address.length)
+	{
+		alert("Not a valid e-mail address");
+		return false;
+	}
+	else{
+		return true;
+	}		
+}
+///
+function vaildate_nic(nic){
+	if(nic.length==10){
+		return true;
+	}
+	alert("not valid number");
+	return false;
 }
