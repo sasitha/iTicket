@@ -18,7 +18,7 @@
 <td id= "page">
 	
     <h2>Upload a movie trailler</h2>			
-    <?php   echo form_open_multipart('home_controller/video_uploder');?>
+    <?php   echo form_open_multipart('operator_controller/video_uploder');?>
     <p>
         <label for= 'film_name'> Film Name</label>
         <input type= 'text' name= 'film_name' id= 'film_name' />        
