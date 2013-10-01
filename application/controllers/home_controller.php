@@ -69,6 +69,10 @@ class home_controller extends CI_Controller {
         //loading view
         $this->load->view('qr_view', $qr_data);
     }
+    
+    public function about(){
+        $this->load->view('about');
+    }
 
 }
 
