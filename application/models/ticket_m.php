@@ -131,17 +131,8 @@
 					}
 				}
 			}
-			//adding ticket
-			$location_id_arr = array();//if some one book more tickets
-			for($i=0;$i<sizeof($location);$i++){
-				$parts = explode('r', $location[$i]);
-				$lok = 'r'.$parts[1];
-				$resid = $this->get_location_id($fhid, $parts[0], $lok);
-				//$test ="INSERT INTO test (data) VALUES (?)";
-				//$testrun = $this->db->query($test,$resid);
-				
-				array_push($location_id_arr,$resid);
-			}
+			//adding ticket/*
+			$location_id_arr = $this->get_id_array($fhid,$location);
 			$t_inqu = "INSERT INTO ticket 
 						(t_id,cl_id,lo_id,fil_id,s_date,show_time_id) VALUES (?,?,?,?,?,?)";
 			for($j =0;$j<sizeof($location_id_arr);$j++){
@@ -150,7 +141,20 @@
 			}
 		}
 		
-		private function get_location_id($fhid,$sid,$location){
+		
+		
+		private function get_id_array($fhid,$location){
+			$location_id_arr = array();
+			for($i=0;$i<sizeof($location);$i++){
+				$parts = explode('r', $location[$i]);
+				$lok = 'r'.$parts[1];
+				$resid = $this->get_location_id($fhid, $parts[0],$lok);
+				array_push($location_id_arr,$resid);
+			}
+			return $location_id_arr;
+		}
+		
+		private function get_location_id($fhid,$sid,$location){	
 			$result = "";
 			$fl = "SELECT l_id
 					FROM location 
@@ -160,10 +164,33 @@
 			$fl_qu = $this->db->query($fl,array($fhid,$sid,$location))->result_array();
 			foreach ($fl_qu as $c1) {
 				foreach($c1 as $c2){
-					$result = $c2;	
+					$result = $c2;
 				}				
 			}
 			return $result;			
+		}
+		
+		public function check_availability($f_h_i,$time,$date,$location_str){
+			$not = 0;
+			$location = explode('#',$location_str);
+			$location_id_arr = $this->get_id_array($f_h_i,$location);
+			$che_que = "SELECT t_id FROM ticket
+			WHERE lo_id = ? AND
+			s_date = ? AND 
+			show_time_id = ?";
+			for ($i=0; $i<sizeof($location_id_arr);$i++){
+				$fl_qu = $this->db->query($che_que,array($location_id_arr[$i],$date,$time));
+				if($fl_qu->num_rows()>0){
+					$not = 1;
+					$test ="INSERT INTO test (data) VALUES (?)";
+					$testrun = $this->db->query($test,$not);
+				}
+			}
+			if($not==0){
+				return FALSE;
+			}else{
+				return TRUE;
+			}
 		}		  				
 }
 ?>

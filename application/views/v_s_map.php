@@ -53,7 +53,7 @@
 		</script>
 		<script type="text/javascript" src="<?php echo base_url('jscr/calculate.js'); ?>"></script>
 	</head>
-	<body>
+	<!--<body>-->
 		<!--information -->
 		<?php echo "<div id=\"datetime\" class = \"dt\">";
 			echo "<div id=\"location\">";?>
@@ -208,5 +208,5 @@
 		
 
 		<!--jquery test-->
-	</body>
+	<!--</body>-->
 </html>

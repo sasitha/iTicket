@@ -14,7 +14,9 @@
 		$seats['locat']= $this->ticket_m->get_locations(1);
 		$seats['filmhall']=$this->ticket_m->get_filmhall(1);
 		$seats['showtims']=$this->ticket_m->get_showtime(1);
+		$this->load->view("header");
        	$this->load->view("v_s_map",$seats);
+		$this->load->view("footer");
 		//$this->load->view("dbhelper",$seats);
        }
 	   
@@ -36,7 +38,7 @@
     					array_push($send_back_data,$cs);
     				}
 				}
-				echo implode("Xx",$send_back_data);
+				echo implode("#",$send_back_data);
 			}else{
 				echo "no data";
 			}
@@ -53,12 +55,23 @@
 			$cl_news = $this->input->post("cl_nl");
 			$price = $this->Escape($this->input->post("cl_price"));
 			$sep = '<br>';
+			/*
+			 * need to add serverside validation
+			 * 
+			 * 
+			 * 
+			 */
 			//load model
 			$this->load->model("ticket_m");
 			if($cl_news == 'true'){
 				$this->ticket_m->add_to_mail_list($cl_mail);
 			}
-			$this->ticket_m->add_seat($cl_mail,$cl_nic,$f_h_i,$flm_id,$b_date,$b_time,$b_seats_arr,$price);
+			if($this->ticket_m->check_availability($f_h_i,$b_time,$b_date,$b_seats_arr)){
+				echo "please ckeck availabitily before book seat";
+			}else{
+				$this->load->view("qr_view");
+				$this->ticket_m->add_seat($cl_mail,$cl_nic,$f_h_i,$flm_id,$b_date,$b_time,$b_seats_arr,$price);
+			}
 			//echo "$b_date.$sep.$b_time$sep$b_seats_arr$sep$cl_mail$sep$cl_nic$sep$cl_news";
 			//$this->load->model("ticket_m");
 			
