@@ -54,7 +54,16 @@ class home_controller extends CI_Controller {
     public function about(){
         $this->load->view('about');
     }
-
+	
+	public function alter(){
+		$this->load->view('header');
+        $this->load->view('update_ticket_view');
+		$this->load->view('footer');
+    }
+	
+	public function get_qr(){
+		
+	}
 }
 
 ?>
