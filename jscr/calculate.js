@@ -137,8 +137,7 @@ $(function() {
        		type: 'POST',
        		data: book_data,
        		success:function(msg){
-					alert(msg);
-					//book_seats(msg);
+					window.location = msg;
 			}
        });
        }
