@@ -1,26 +1,15 @@
-<script type="text/javascript">
-	function execute() {
-			//alert("home");
-			//return String("kk");
-			$.post( "http://localhost/iTicket/qr_upload/get", { name: "John"},function( data ) {
-			alert( "Data Loaded: " + data );});
-        }
-</script>
 <?php
 //include 'all';
 class qr_upload extends CI_Controller{
-	var $save_path;
-	private $imagepath;
+	private $save_path;
+	private $client_id;
 	public function qr_upload(){
 		parent::__construct();
 		$this->save_path = realpath(APPPATH.'../saveqr');
 	}
 	
 	public function save_qr($path){
-		//$this->$imagepath = $path;
-		$rr = 'hhh';
-		echo "<script>rung();</script>";
-		return $rr;
+		
 	}
 	
 	public function get_qr(){
@@ -31,27 +20,29 @@ class qr_upload extends CI_Controller{
         		///$name = $_FILES["images"]["name"][$key];
         		$name = "ticket.png";
 				$image = $name;
-        		move_uploaded_file( $_FILES["images"]["tmp_name"][$key], realpath(APPPATH."../saveqr").'/'. $name);
+        		move_uploaded_file( $_FILES["images"]["tmp_name"][$key], $this->save_path.'/'. $name);
     		}
 		}
-		//$name=$_REQUEST['images'];
-		$path_name = realpath(APPPATH."../saveqr").'/'. $image ;		
-		//$image  = $_FILES["images"];		
-		//echo "<h2>Successfully Uploaded Images</h2>";
-		echo "rr";
-		echo "<script> execute(); </script>";
-		//echo $this->get();
-		/*{header('Content-type: application/x-javascript');
-				//echo execute();		
-		}	*/	//echo $image;
 	}
-	public function get(){
-		if( $_POST["name"])
-  		{
-     		return  $_POST['name'] ;
-     //echo "You are ". $_POST['age']. " years old.";
-    // exit();
-  		}
+	public function check_qr(){		
+		$data = $this->input->post("qdata");
+		$this->load->model("qr_model");
+		
+		//get_up_client
+		$client_data =  $this->qr_model->get_up_client($data);
+		echo $client_data;
+		//client id
+		
+	}
+	
+	public function update(){
+		$date = $this->input->post("u_date");
+		$time = $this->input->post("u_time");
+		$this->load->model("qr_model");
+		$this->client_id = $this->qr_model->get_up_client_id();
+		$test ="INSERT INTO test (data) VALUES (?)";
+		$testrun = $this->db->query($test,$this->client_id);
+		echo $this->client_id;
 	}	
 }
 ?>
