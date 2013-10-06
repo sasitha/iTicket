@@ -39,13 +39,14 @@
 			$rand = mt_rand();//random generated value
 			$costr = $cl_id.$cli_mail.$cli_nic.$seats.$rand;//encoaded string
 			$this->load->library('encrypt');//encrypt libry
-			$keys1 = $this->encrypt->encode($costr,$this->add_key);
+			$keys1 = $this->encrypt->encode($costr,$this->add_key);//md5 or shar1
 			//add encrypt data to db
 			$adding ="INSERT INTO ticket_data (client_id,key_val) VALUES (?,?)";
 			$testrun = $this->db->query($adding,array($cl_id,$keys1));
 			$value = $this->qr_display($keys1);// get qr code link
 			return $value;// send link to client
 		}
+		
 		
     }
 
