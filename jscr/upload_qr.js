@@ -79,7 +79,7 @@ function time(sec){
 	}
 	var times_page = times.join("h ");
 	//times_page.concat("h ");
-	alert(times_page);
+	//alert(times_page);
 	$('#time').html('You have to select time from  ' +times_page+"h <br>" );	
 }
 
@@ -99,8 +99,8 @@ function upd(){
        		type: 'POST',
        		data: update_data,
        		success:function(msg){
-					//window.location = msg;
-					alert(msg);
+					window.location = msg;
+					//alert(msg);
 			}
        });
 }

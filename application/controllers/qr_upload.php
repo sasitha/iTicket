@@ -27,22 +27,19 @@ class qr_upload extends CI_Controller{
 	public function check_qr(){		
 		$data = $this->input->post("qdata");
 		$this->load->model("qr_model");
-		
 		//get_up_client
 		$client_data =  $this->qr_model->get_up_client($data);
 		echo $client_data;
-		//client id
-		
+		//client id		
 	}
 	
 	public function update(){
 		$date = $this->input->post("u_date");
 		$time = $this->input->post("u_time");
 		$this->load->model("qr_model");
-		$this->client_id = $this->qr_model->get_up_client_id();
-		$test ="INSERT INTO test (data) VALUES (?)";
-		$testrun = $this->db->query($test,$this->client_id);
-		echo $this->client_id;
+		$ucid = $this->qr_model->get_up_client_id();
+		$newli = $this->qr_model->do_update($ucid,$date,$time);
+		echo $newli;
 	}	
 }
 ?>
