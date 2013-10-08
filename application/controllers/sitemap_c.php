@@ -70,7 +70,7 @@
 				echo "please ckeck availabitily before book seat";
 			}else{
 				$this->load->model('qr_model');
-				$qr_data['data'] = $this->qr_model->create_qr_data($cl_mail,$cl_nic,$b_seats_arr);
+				$qr_data['data'] = $this->qr_model->create_qr_data();
 				echo $qr_data['data'];
 				$this->ticket_m->add_seat($cl_mail,$cl_nic,$f_h_i,$flm_id,$b_date,$b_time,$b_seats_arr,$price);
 			}

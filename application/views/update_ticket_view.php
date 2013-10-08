@@ -11,6 +11,8 @@ for ($i = 0;$i <sizeof($scripts);$i++){
 <script type="text/javascript">
 	var image_up = '<?php echo base_url('qr_upload/get_qr'); ?>';
 	var locations = '<?php echo base_url('saveqr/ticket.png'); ?>';
+	var data_up = '<?php echo base_url('qr_upload/check_qr'); ?>';
+	var update = '<?php echo base_url('qr_upload/update'); ?>';
 </script>
 <br>
 <ul>
@@ -53,12 +55,24 @@ for ($i = 0;$i <sizeof($scripts);$i++){
 		</button>
 		
 	</form>
-<button id="dd" onclick="ddd()" >DECODE</button>
+<button id="dd" onclick="ddd()" >CHANGE</button>
 	<div id ="reupload" align="center">
 
 	</div>
 
 </p>
+
+<div id="new" align="center"  style="display: none">
+	<h3> ADD YOUR NEW DATA</h3>
+	Date <input id="udate" type="text" size = "8" />
+	<br><br>
+	<label id="time"></label>
+	<br>
+	Time <input id="utime" type="text" size = "8" />
+	
+	<br><br>
+	<button id="dd" onclick="upd()" >UPDATE</button>
+</div>
 
 <script type="text/javascript" src="<?php echo base_url('jscr/upload_qr.js'); ?>"></script>
 
