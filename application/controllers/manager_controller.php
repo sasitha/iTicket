@@ -46,6 +46,13 @@ class manager_controller extends CI_Controller{
         echo $data['f_name'];
         echo $data['f_hall'];
     }
+    
+    public function view_reservation(){
+        $this->load->model('manager_model');
+        
+        $data['s_data'] = $this->manager_model->get_reserv_data();
+        $this->load->view('pichart_view', $data);
+    }
 }
 ?>
 

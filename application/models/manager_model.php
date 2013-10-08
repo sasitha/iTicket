@@ -40,6 +40,30 @@ class manager_model extends CI_Model{
             return $data;
         }
     }
+    
+    public function get_reserv_data($data = NULL){
+        $date = '2013-10-04';
+        $time_id = '1';
+        $film_hall = '';
+        
+        $sql_str = "SELECT s_id, COUNT(l_id) as count
+                    FROM location
+                    WHERE l_id in(
+                    SELECT lo_id
+                    FROM ticket
+                    WHERE s_date = ?
+                    AND
+                    show_time_id = ?)
+                    GROUP BY s_id
+                    ";
+        
+        $query = $this->db->query($sql_str, array($date, $time_id));
+        
+        if($query->num_rows()>0){
+            $data = $query->result_array();
+            return $data; 
+        }
+    }
 }
 
 
